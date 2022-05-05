@@ -1,5 +1,5 @@
 import React from "react";
-// import blogData from "../database/data.js";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Card,
   CardBody,
@@ -8,7 +8,6 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
-import UpdateForm from "./Update";
 
 const axios = require("axios");
 
@@ -55,6 +54,7 @@ export default class MyBlog extends React.Component {
   state = {
     blogs: [],
   };
+
   componentDidMount() {
     axios
       .get("http://localhost:3000/blogs")
@@ -97,7 +97,9 @@ export default class MyBlog extends React.Component {
                 <CardText className="blog-content">{ele.content}</CardText>
                 <div className="button-container">
                   <div className="multiple-buttons">
-                    <Button color="dark">View</Button>
+                    <Link to="/view/1" state={{ element: { ele } }}>
+                      <Button color="dark">View</Button>
+                    </Link>
                     <Button color="success">Edit</Button>
                     <Button
                       color="danger"

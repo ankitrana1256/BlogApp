@@ -4,6 +4,7 @@ import MyBlog from "./components/Blogs.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CreationForm from "./components/Create";
 import UpdateForm from "./components/Update";
+import View from "./components/View";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<MyBlog />} />
           <Route path="/create" element={<CreationForm />} />
           <Route path="/update" element={<UpdateForm />} />
+          <Route path="/view/:id" element={<View />} />
         </Routes>
       </div>
     </BrowserRouter>

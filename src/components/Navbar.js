@@ -15,7 +15,7 @@ export const AppNavbar = () => {
       <Collapse navbar>
         <Nav className="me-auto" navbar>
           <NavItem>
-            <NavLink href="/">View</NavLink>
+            <NavLink href="/">Home</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="/create">Create</NavLink>

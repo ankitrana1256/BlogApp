@@ -110,6 +110,7 @@ export default class CreationForm extends React.Component {
   render() {
     return (
       <div className="form-container">
+        <h2 id="heading">Add a Blog</h2>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label for="title">Title</Label>

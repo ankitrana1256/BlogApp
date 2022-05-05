@@ -1,5 +1,4 @@
 .blog-container{
-
     margin-top:8vh;
     padding: 4px;
     display:inline-grid;
@@ -55,4 +54,22 @@
 .form-container{
     margin-top:18vh;
     padding: 14px;
+}
+
+#heading{
+    text-align: center;
+}
+
+.blog-container-view{
+    margin-top:8vh;
+    padding: 4px;
+
+}
+
+.blog-item-view{
+    border: 2px solid black;
+    position: relative;
+
+    margin : 5px;
+    overflow: hidden;
 }
