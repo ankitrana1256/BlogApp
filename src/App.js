@@ -1,20 +1,22 @@
 import "./App.css";
-import React, { useState } from "react";
 import { AppNavbar } from "./components/Navbar.js";
-import { MyBlog } from "./components/Blogs.js";
-import blogData from "./database/data";
+import MyBlog from "./components/Blogs.js";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CreationForm from "./components/Create";
+import UpdateForm from "./components/Update";
 
 const App = () => {
   return (
-    <div className="App">
-      <AppNavbar />
-      <div className="blog-container">
-        {blogData.map((ele) => {
-          <MyBlog ele={ele} />;
-        })}
-        <MyBlog />
+    <BrowserRouter>
+      <div className="App">
+        <AppNavbar />
+        <Routes>
+          <Route path="/" element={<MyBlog />} />
+          <Route path="/create" element={<CreationForm />} />
+          <Route path="/update" element={<UpdateForm />} />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 

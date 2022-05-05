@@ -1,4 +1,5 @@
 .blog-container{
+
     margin-top:8vh;
     padding: 4px;
     display:inline-grid;
@@ -7,6 +8,7 @@
 }
 
 .blog-item{
+    border: 2px solid black;
     position: relative;
     height: 90vh;
     width: 32vw;
@@ -35,7 +37,7 @@
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
-    height: 80%;
+    height: 67.2vh;
 }
 
 .button-container{
@@ -48,4 +50,9 @@
     width: 60%;
     display:flex;
     justify-content:space-evenly;
+}
+
+.form-container{
+    margin-top:18vh;
+    padding: 14px;
 }

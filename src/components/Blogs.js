@@ -1,4 +1,5 @@
 import React from "react";
+// import blogData from "../database/data.js";
 import {
   Card,
   CardBody,
@@ -7,51 +8,110 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
+import UpdateForm from "./Update";
 
-export const MyBlog = (ele) => {
-  console.log(ele.id);
-  return (
-    <Card body color="light" className="text-center blog-item">
-      <CardBody>
-        <div className="blog-title">
-          <CardTitle tag="h5" className="blog-title-text">
-            Casino Night 2022 Recap i this year maybe wadda
-          </CardTitle>
-        </div>
-        <CardSubtitle className="mb-2 text-muted" tag="h6">
-          Date
-        </CardSubtitle>
-        <CardText className="blog-content">
-          On Friday, April 8th, the Herzog family had a Casino Night to benefit
-          Cure Rare Disease (CRD) raising over $73,000. Family, friends and
-          colleagues of the Herzogs, along with members of the CRD community,
-          got together in Branford, CT for a night full of casino games, food,
-          cocktails, live music and good company while raising funds for CRD. ‍
-          “Thank you to our amazing family, friends and community of warriors we
-          have fighting for us every step of the way! #CRDCasinoNight was a
-          success all because of you! We truly are the luckiest people in the
-          world. I wish I could bottle up the love we feel on the daily and give
-          it all back to the world. Until then, we’re going to try our darndest
-          to show you all our love and thanks!” - Stephanie Herzog, CRD Board
-          Member and Duchenne mom to Max, said in a Facebook post. ‍ Since 2019,
-          the Herzog family has raised over $1.5M for Cure Rare Disease. On
-          behalf of our entire community, CRD thanks the Herzog family and the
-          event committee for everything you do for CRD! ‍ Stephanie finished
-          her post by saying, “We truly are the luckiest people in the world. I
-          wish I could bottle up the love we feel on the daily and give it all
-          back to the world. Until then, we’re going to try our darndest to show
-          you all our love and thanks!” ‍ To see the full album of photos from
-          CRD Casino Night, click here. ‍ Have an idea for a fundraiser you’d
-          like to organize? Contact CRD today!
-        </CardText>
-        <div className="button-container">
-          <div className="multiple-buttons">
-            <Button color="dark">View</Button>
-            <Button color="success">Edit</Button>
-            <Button color="danger">Delete</Button>
-          </div>
-        </div>
-      </CardBody>
-    </Card>
-  );
-};
+const axios = require("axios");
+
+// axios
+//   .get("http://localhost:3000/blogs")
+//   .then((resp) => {
+//     console.log(resp.data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+// export const MyBlog = ({ ele }) => {
+//   return (
+//     <div className="blog-container">
+//       {blogData.map((ele) => {
+//         return (
+//           <Card body color="light" className="text-center blog-item">
+//             <CardBody>
+//               <div className="blog-title">
+//                 <CardTitle tag="h5" className="blog-title-text">
+//                   {ele.title}
+//                 </CardTitle>
+//               </div>
+//               <CardSubtitle className="mb-2 text-muted" tag="h6">
+//                 {ele.date}
+//               </CardSubtitle>
+//               <CardText className="blog-content">{ele.content}</CardText>
+//               <div className="button-container">
+//                 <div className="multiple-buttons">
+//                   <Button color="dark">View</Button>
+//                   <Button color="success">Edit</Button>
+//                   <Button color="danger">Delete</Button>
+//                 </div>
+//               </div>
+//             </CardBody>
+//           </Card>
+//         );
+//       })}
+//     </div>
+//   );
+// };
+export default class MyBlog extends React.Component {
+  state = {
+    blogs: [],
+  };
+  componentDidMount() {
+    axios
+      .get("http://localhost:3000/blogs")
+      .then((resp) => {
+        const blogs = resp.data;
+        this.setState({ blogs });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  deleteBlog(id) {
+    console.log(id);
+    axios
+      .delete(`http://localhost:3000/blogs/${id}/`)
+      .then((resp) => {
+        alert("Blog Deleted");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  render() {
+    return (
+      <div className="blog-container">
+        {this.state.blogs.map((ele) => {
+          return (
+            <Card body color="light" className="text-center blog-item">
+              <CardBody>
+                <div className="blog-title">
+                  <CardTitle tag="h5" className="blog-title-text">
+                    {ele.title}
+                  </CardTitle>
+                </div>
+                <CardSubtitle className="mb-2 text-muted" tag="h6">
+                  {ele.date}
+                </CardSubtitle>
+                <CardText className="blog-content">{ele.content}</CardText>
+                <div className="button-container">
+                  <div className="multiple-buttons">
+                    <Button color="dark">View</Button>
+                    <Button color="success">Edit</Button>
+                    <Button
+                      color="danger"
+                      onClick={() => this.deleteBlog(ele.id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              </CardBody>
+            </Card>
+          );
+        })}
+      </div>
+    );
+  }
+}

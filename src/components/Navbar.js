@@ -11,14 +11,14 @@ import {
 export const AppNavbar = () => {
   return (
     <Navbar color="dark" dark expand fixed="top" light className="navbar">
-      <NavbarBrand href="/">Blog</NavbarBrand>
+      <NavbarBrand href="#">Blog</NavbarBrand>
       <Collapse navbar>
         <Nav className="me-auto" navbar>
           <NavItem>
-            <NavLink href="#">View</NavLink>
+            <NavLink href="/">View</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Edit</NavLink>
+            <NavLink href="/create">Create</NavLink>
           </NavItem>
         </Nav>
       </Collapse>
